@@ -5,9 +5,9 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-class miMarco extends JFrame{
+class miMarco extends JFrame {
 	
-	public miMarco(){
+	public miMarco() {
 		setSize(900, 600);
 		setResizable(false); //para que el usuario no lo pueda redimensionar
 		setTitle("Cartera de Inversión");

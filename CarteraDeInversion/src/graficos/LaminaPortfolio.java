@@ -8,9 +8,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-public class LaminaPortfolio extends JPanel /*implements ActionListener*/ {
+public class LaminaPortfolio extends JPanel /*implements ActionListener*/  {
 	
-	public void paintComponent(Graphics g){
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		Font miFuente = new Font("Arial", Font.BOLD, 26);
@@ -20,7 +20,7 @@ public class LaminaPortfolio extends JPanel /*implements ActionListener*/ {
 		
 	}
 		
-	public LaminaPortfolio(){
+	public LaminaPortfolio() {
 			
 	}
 

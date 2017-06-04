@@ -10,9 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-class Lamina extends JPanel implements ActionListener{
+class Lamina extends JPanel implements ActionListener {
 	
-	public void paintComponent(Graphics g){
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		Font miFuente = new Font("Arial", Font.BOLD, 26);
@@ -29,7 +29,7 @@ class Lamina extends JPanel implements ActionListener{
 	JButton operaciones = new JButton("Operaciones");
 	Font fte = new Font("Arial", Font.PLAIN, 18);
 	
-	public Lamina(){
+	public Lamina() {
 		add(miPortfolio);
 		miPortfolio.setFont(fte);
 		miPortfolio.setBounds(100, 200, 200, 50);
@@ -53,25 +53,25 @@ class Lamina extends JPanel implements ActionListener{
 
 	}
 	
-	public void actionPerformed(ActionEvent e){ //windowEvent
+	public void actionPerformed(ActionEvent e) { //windowEvent
 		Object botonPulsado = e.getSource();
-		if(botonPulsado == miPortfolio){
+		if(botonPulsado == miPortfolio) {
 			MiPortfolio portfolioVentana = new MiPortfolio();
 			portfolioVentana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
-		else if(botonPulsado == noticias){
+		else if(botonPulsado == noticias) {
 			Noticias noticVentana = new Noticias();
 			noticVentana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
-		else if(botonPulsado == conversor){
+		else if(botonPulsado == conversor) {
 			ConversorDeDivisas convVentana= new ConversorDeDivisas();
 			convVentana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
-		else if(botonPulsado == miHistorial){
+		else if(botonPulsado == miHistorial) {
 			HistorialDeOperaciones histVentana = new HistorialDeOperaciones();
 			histVentana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
-		else{
+		else {
 			//boton operaciones
 			Operaciones opVentana = new Operaciones();
 			opVentana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

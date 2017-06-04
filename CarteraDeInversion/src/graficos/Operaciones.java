@@ -1,8 +1,8 @@
 package graficos;
 
-public class Operaciones extends Ventana{
+public class Operaciones extends Ventana {
 	
-	public Operaciones(){
+	public Operaciones() {
 		super();
 		LaminaOperaciones l = new LaminaOperaciones();//ESTO DESPUES SE CAMBIA HAY Q CREAR UNA LAMINA PARA CADA VENTANA
 		add(l);

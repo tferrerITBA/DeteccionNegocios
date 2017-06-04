@@ -6,9 +6,9 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-public class LaminaOperaciones extends JPanel{
+public class LaminaOperaciones extends JPanel {
 	
-	public void paintComponent(Graphics g){
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		Font miFuente = new Font("Arial", Font.BOLD, 26);
@@ -18,7 +18,7 @@ public class LaminaOperaciones extends JPanel{
 	
 	}
 	
-	public LaminaOperaciones(){
+	public LaminaOperaciones() {
 		
 	}
 }

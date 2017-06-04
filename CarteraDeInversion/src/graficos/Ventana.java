@@ -7,9 +7,9 @@ import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 
-public class Ventana extends JFrame /*implements WindowListener*/{
+public class Ventana extends JFrame /*implements WindowListener*/ {
 	
-	public Ventana(){
+	public Ventana() {
 		setSize(900,600);
 		setResizable(false); //para que el usuario no lo pueda redimensionar
 		Toolkit miPantalla = Toolkit.getDefaultToolkit();

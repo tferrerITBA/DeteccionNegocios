@@ -1,8 +1,8 @@
 package graficos;
 
-public class HistorialDeOperaciones extends Ventana{
+public class HistorialDeOperaciones extends Ventana {
 	
-	public HistorialDeOperaciones(){
+	public HistorialDeOperaciones() {
 		super();
 		LaminaHistorial l = new LaminaHistorial();//ESTO DESPUES SE CAMBIA HAY Q CREAR UNA LAMINA PARA CADA VENTANA
 		add(l);
