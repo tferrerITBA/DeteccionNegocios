@@ -10,18 +10,19 @@ import javax.swing.JPanel;
 
 public class LaminaPortfolio extends JPanel /*implements ActionListener*/ {
 	
-		public void paintComponent(Graphics g){
-			super.paintComponent(g);
-			Graphics2D g2= (Graphics2D) g;
-			Font miFuente=new Font("Arial", Font.BOLD, 26);
-			g2.setFont(miFuente);
-			g2.drawString("Mi Portfolio", 20, 30);
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D) g;
+		Font miFuente = new Font("Arial", Font.BOLD, 26);
+		g2.setFont(miFuente);
+		g2.drawString("Mi Portfolio", 20, 30);
 			
 		
-		}
-		public LaminaPortfolio(){
+	}
+		
+	public LaminaPortfolio(){
 			
-		}
+	}
 
 	//	@Override
 		/*public void actionPerformed(ActionEvent e) {

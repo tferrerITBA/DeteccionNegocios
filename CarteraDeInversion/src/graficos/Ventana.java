@@ -12,8 +12,8 @@ public class Ventana extends JFrame /*implements WindowListener*/{
 	public Ventana(){
 		setSize(900,600);
 		setResizable(false); //para que el usuario no lo pueda redimensionar
-		Toolkit miPantalla=Toolkit.getDefaultToolkit();
-		Image miIcono= miPantalla.getImage("src/graficos/logo.jpg");
+		Toolkit miPantalla = Toolkit.getDefaultToolkit();
+		Image miIcono = miPantalla.getImage("src/graficos/logo.jpg");
 		setIconImage(miIcono);
 		setLocationRelativeTo(null);
 	}
