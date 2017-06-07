@@ -29,33 +29,45 @@ public class Portfolio {
 	}
 
 	public double getNetWorth() {
+		calcNetWorth(); //estaria bueno hacer esto solo si pasaron 5min desde la ultima actualizacion
 		return netWorth;
 	}
 
 	public double getOverallGains() {
+		calcGains(); //estaria bueno hacer esto solo si pasaron 5min desde la ultima actualizacion
 		return overallGains;
 	}
 
 	public double getOverallReturns() {
+		calcReturns(); //estaria bueno hacer esto solo si pasaron 5min desde la ultima actualizacion
 		return overallReturns;
 	}
 	
-	public void calcGains() {
-		
+	private void calcGains() {
+		overallGains = getAllCurrentValues() - getAllOriginalValues();
 	}
 	
-	public void calcReturns() {
-		
+	private void calcReturns() {
+		overallReturns = getAllCurrentValues() / getAllOriginalValues();
 	}
 	
-	public void calcNetWorth() {
+	private void calcNetWorth() {
+		netWorth = getAllCurrentValues();
+	}
+	
+	private double getAllCurrentValues() {
 		double sum = 0; 
 		for(Asset asset : getHoldings()) {
 			sum += asset.getVal();
 		}
-		netWorth = sum;
+		return sum;
 	}
 	
-	
-
+	private double getAllOriginalValues() {
+		double sum = 0;
+		for(Operation operation : getHistory()) {
+			sum += operation.asset.getVal();
+		}
+		return sum;
+	}
 }
