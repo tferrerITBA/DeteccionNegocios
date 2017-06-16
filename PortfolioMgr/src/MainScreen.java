@@ -32,7 +32,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
-
+/**
+ * Application's GUI.
+ * 
+ * @author Nicolas Benenzon
+ *
+ */
 public class MainScreen {
 
 	private JFrame frmPortfolioManager;
