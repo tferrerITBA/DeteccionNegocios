@@ -1,4 +1,4 @@
-package com.carteradeinversion.portfolio;
+package com.carteradeinversion.sys;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -69,5 +69,9 @@ public class Portfolio {
 			sum += operation.asset.getVal();
 		}
 		return sum;
+	}
+	
+	protected void addOperation(Operation operation) {
+		
 	}
 }

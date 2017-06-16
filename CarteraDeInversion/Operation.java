@@ -11,12 +11,12 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-/*Operations are save to file named operationHistory.ser */
+/*Operations are saved to a file named operationHistory.ser */
 
 public class Operation implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private final int type;	//1 for buying operation, 2 for selling.
+	private final int type;	//1 is for the "buying" operation, 2 for the "selling" operation.
 	private Asset asset;
 	private Date date;
 	private int amount;
@@ -29,19 +29,19 @@ public class Operation implements Serializable{
 	}
 
 	public void setType(int type) {
-		this.type=type;
+		this.type = type;
 	}
 	
 	public void setAsset(Asset asset) {
-		this.asset=asset;
+		this.asset = asset;
 	}
 	
 	public void setDate(Date date) {
-		this.date=date;
+		this.date = date;
 	}
 	
 	public void setAmount(int amount) {
-		this.amount=amount;
+		this.amount = amount;
 	}
 	
 	public int getType() {
@@ -61,14 +61,14 @@ public class Operation implements Serializable{
 	}
 	
 	public void UpdatePorfolio() {
-		// creo que este metodo deberÃ­a ir en Portfolio
+		// creo que este metodo deberia ir en Portfolio
 	}
 	
 	public void Operate(Operation op){
 		
 	}
 	
-	void WriteOperationInHistoryFile(Operation operation){	
+	void WriteOperationInHistoryFile(Operation operation){	//o es un método static, o es de instancia y no recibe parametros
 		
 		String fileName = "operationHistory.ser";
 		
