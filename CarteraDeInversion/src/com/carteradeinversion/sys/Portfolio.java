@@ -71,7 +71,13 @@ public class Portfolio {
 		return sum;
 	}
 	
-	protected void addOperation(Operation operation) {
-		
+	public void addOperation(Operation operation) {
+		Asset originalState = new Asset(operation.getAsset());
+		holdings.add(originalState);
+		history.add(operation);
+		calcNetWorth();
+		calcGains();
+		calcReturns();
+		writeOperationInHistoryFile(operation);
 	}
 }

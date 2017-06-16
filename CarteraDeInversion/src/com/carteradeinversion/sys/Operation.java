@@ -1,3 +1,5 @@
+package com.carteradeinversion.sys;
+
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -94,37 +96,40 @@ public class Operation implements Serializable{
 	 *  de manejar el flujo con 
 	 *  try-catch pero es la unica
 	 *   manera que encontre
+	 *   
+	 *   Esto esta bien en archivos, no queda otra
 	*/
 	public Collection<Operation> readFromFile() {  
 		List<Operation> operationList = new ArrayList<Operation>();
 		String fileName = "operationHistory.bin";
-				
-	      try {
+		FileInputStream fis;
+		ObjectInputStream ois;
+		
+		try {
+			
+			fis = new FileInputStream(fileName);  
+			ois = new ObjectInputStream(fis);
 	    	  
-	    	  FileInputStream fis = new FileInputStream(fileName);
-	    	  ObjectInputStream ois = new ObjectInputStream(fis);
-	    	  
-	    	  	while(true) {
-	
-	    	  		Operation operation = (Operation) ois.readObject();
-	    	  		operationList.add(operation);
-	    	  		
-	    	  	}
-	      } catch (EOFException expectedException) {
+	    	while(true) {
+	    		Operation operation = (Operation) ois.readObject();	
+	    		operationList.add(operation);
+	    	}
+	    	
+	    } catch (EOFException expectedException) {
 	    	  //continue to finally block
-	      } catch (ClassNotFoundException cnf) {
+	    } catch (ClassNotFoundException cnf) {
 	    	  cnf.printStackTrace();
-	      } catch (IOException io) {
+	    } catch (IOException io) {
 	    	  io.printStackTrace();
-	      } finally {
-	         try{
-				if( ois != null )
-	        		 ois.close();
-	         } catch (IOException e){
-	        	 e.printStackTrace();
-	         }
-	      return operationList;
-	      }	
+	    } finally {
+	    	try {
+	    		if( ois != null )
+	    			ois.close();
+	        } catch (IOException e){
+	        	e.printStackTrace();
+	        }
+	    return operationList;
+	    }	
 	}
 	
 }
