@@ -14,11 +14,20 @@ import java.util.Date;
 import java.util.List;
 
 /*Operations are saved to a file named operationHistory.ser */
-
+/**
+ * Class for managing Operation objects. Includes functionality to export these to a
+ * file (named operationHistory.ser). 
+ * 
+ * @author Felipe Gorostiaga
+ * 
+ */
 public class Operation implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private final int type;	//1 is for the "buying" operation, 2 for the "selling" operation.
+	/**
+	 * Type is set to 1 if this is a buying operation, and set to 2 if this is a selling operation.
+	 */
+	private final int type;
 	private Asset asset;
 	private Date date;
 	private int amount;

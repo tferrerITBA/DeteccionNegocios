@@ -5,7 +5,13 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
+/**
+ * Class that handles those assets acquired by the user. Calculates the user's net worth, and overall
+ * gains (in $) and returns (in %).
+ * 
+ * @author Tomas Ferrer
+ *
+ */
 public class Portfolio {
 	
 	private Set<Asset> holdings;
@@ -71,8 +77,20 @@ public class Portfolio {
 		return sum;
 	}
 	
+	/**
+	 * Adds an operation to the current portfolio. If the user already had acquired a certain amount of
+	 * a specific asset and wishes to buy more, these should be merged.
+	 * 
+	 * @param operation Operation to be added.
+	 */
 	public void addOperation(Operation operation) {
 		Asset originalState = new Asset(operation.getAsset());
+		for(Asset asset : holdings) {
+			if(originalState.equals(asset)) {
+				asset.setValue(asset.getValue() + originalState.getValue());
+				return;
+			}
+		}
 		holdings.add(originalState);
 		history.add(operation);
 		calcNetWorth();
