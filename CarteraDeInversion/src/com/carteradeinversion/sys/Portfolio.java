@@ -94,8 +94,9 @@ public class Portfolio {
 	 * a specific asset and wishes to buy more, these should be merged.
 	 * 
 	 * @param operation Operation to be added.
+	 * @throws Exception 
 	 */
-	public void addOperation(Operation operation) {
+	public void addOperation(Operation operation) throws Exception {
 		
 		if(operation.isBuyingOperation()) {
 			double amount = operation.getPurchaseAmount() * operation.getPurchaseValue();
