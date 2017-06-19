@@ -25,30 +25,30 @@ public class Operation implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Type is set to 1 if this is a buying operation, and set to 2 if this is a selling operation.
+	 * isBuyingOperation is set to true if this is a buying operation, and set to false if this is a selling operation.
 	 */
-	private final int type;
+	private final boolean isBuyingOperation;
 	private final Asset asset;
 	private final Date date;
 	private final int purchaseAmount;
 	private final double purchaseValue;
 	
-	public Operation(int type, Asset asset, Date date, int purchaseAmount, double purchaseValue){
+	//Asegurar que purchaseAmount sea positivo
+	
+	public Operation(boolean isBuyingOperation, Asset asset, Date date, int purchaseAmount){
 		
-		this.type = type;
-		this.purchaseValue = purchaseValue;
+		this.isBuyingOperation = isBuyingOperation;
+		this.purchaseValue = asset.getVal();
 		this.purchaseAmount = purchaseAmount;
 		this.date = date;
 		this.asset = asset;
+		
+		writeOperationInHistoryFile(this);
 		
 	}
 	
 	public double getPurchaseValue() {
 		return purchaseValue;
-	}
-	
-	public int getType() {
-		return type;
 	}
 	
 	public int getPurchaseAmount() {
@@ -63,22 +63,24 @@ public class Operation implements Serializable{
 		return date;
 	}
 	
-	public void UpdatePorfolio() {
+	public void updatePorfolio() {
 		// creo que este metodo deberia ir en Portfolio
 	}
 	
-	public void Operate(Operation op){
+	public void operate(Operation op){
 		
 	}
 	
-	void WriteOperationInHistoryFile(Operation operation){	//o es un m�todo static, o es de instancia y no recibe parametros
+	void writeOperationInHistoryFile(Operation operation){	//o es un m�todo static, o es de instancia y no recibe parametros
 		
 		String fileName = "operationHistory.ser";
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
 		
 		try {
 			
-			FileOutputStream fos = new FileOutputStream(fileName);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			fos = new FileOutputStream(fileName);
+			oos = new ObjectOutputStream(fos);
 			oos.writeObject(operation);
 			oos.close();
 			
@@ -131,6 +133,10 @@ public class Operation implements Serializable{
 	        }
 	    }
 		 return operationList;
+	}
+
+	public boolean isBuyingOperation() {
+		return isBuyingOperation;
 	}
 	
 }

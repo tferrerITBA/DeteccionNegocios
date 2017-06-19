@@ -20,6 +20,7 @@ public class Portfolio {
 	private double netWorth;
 	private double overallGains;
 	private double overallReturns;
+	private double cash;
 	
 	public Portfolio() {
 		holdings = new HashMap<>();
@@ -54,15 +55,15 @@ public class Portfolio {
 		overallGains = getAllCurrentValues() - getAllAcquiredValues();
 	}
 	
-	private void calcReturns() {
-		overallReturns = getAllCurrentValues() / getAllAcquiredValues();
+	private void calcReturns() {	
+		overallReturns = (( getAllCurrentValues() / getAllAcquiredValues() ) * 100 ) - 100 ;
 	}
 	
-	private void calcNetWorth() {
+	private void calcNetWorth() {	
 		netWorth = getAllCurrentValues();
 	}
 	
-	private double getAllCurrentValues() {
+	private double getAllCurrentValues() { //updated
 		double sum = 0; 
 		
 		for(Asset asset : getHoldings().keySet()) {
@@ -72,7 +73,7 @@ public class Portfolio {
 		return sum;
 	}
 	
-	private double getAllAcquiredValues() {
+	private double getAllAcquiredValues() { //updated
 		double sum = 0;
 		for(Asset asset : getHoldings().keySet()) {
 			sum += getHoldings().get(asset).getMoneyInvested();
@@ -80,6 +81,14 @@ public class Portfolio {
 		return sum;
 	}
 	
+	private void operate(Asset asset, int amount, double price) {
+		
+		PurchaseInfo info = holdings.get(asset);
+		
+		info.setMoneyInvested(info.getMoneyInvested() + (amount * price));
+		info.setAssetAmount(info.getAssetAmount() + amount);
+		
+	}
 	/**
 	 * Adds an operation to the current portfolio. If the user already had acquired a certain amount of
 	 * a specific asset and wishes to buy more, these should be merged.
@@ -87,18 +96,38 @@ public class Portfolio {
 	 * @param operation Operation to be added.
 	 */
 	public void addOperation(Operation operation) {
-		Asset originalState = new Asset(operation.getAsset());
-		for(Asset asset : holdings) {
-			if(originalState.equals(asset)) {
-				asset.setValue(asset.getValue() + originalState.getValue());
-				return;
-			}
+		
+		if(operation.isBuyingOperation()) {
+			double amount = operation.getPurchaseAmount() * operation.getPurchaseValue();
+			if(amount > getCash() )
+				throw new Exception("Insuficient funds");
+			else
+				operate(operation.getAsset(), operation.getPurchaseAmount(), operation.getPurchaseValue());
 		}
-		holdings.add(originalState);
+		else {
+			if(holdings.get(operation.getAsset()).getAssetAmount() < operation.getPurchaseAmount() )
+				throw new Exception("Insuficient assets to sell");
+			else
+				operate(operation.getAsset(), -1 * operation.getPurchaseAmount(), operation.getPurchaseValue());
+				
+		}
+		
 		history.add(operation);
+		
 		calcNetWorth();
 		calcGains();
 		calcReturns();
-		writeOperationInHistoryFile(operation);
+		/* writeOperationInHistoryFile(operation); este metodo no se usaria ya que cuando se crea la operation se guarda instantaneamente 
+		 * en el archivo de historias. Para esto se tiene que validar antes de la creacion que la operation se realizable, es decir que si es 
+		 * de compra se tenga la $$ necesaria y si es de venta se tengan la cantidad de Assets disponibles para dicha venta.
+		 */
+	}
+
+	public double getCash() {
+		return cash;
+	}
+
+	public void setCash(double cash) {
+		this.cash = cash;
 	}
 }
