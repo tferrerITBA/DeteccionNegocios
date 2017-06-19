@@ -111,8 +111,8 @@ public class Operation implements Serializable{
 	public Collection<Operation> readFromFile() {  
 		List<Operation> operationList = new ArrayList<Operation>();
 		String fileName = "operationHistory.bin";
-		FileInputStream fis;
-		ObjectInputStream ois;
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
 		
 		try {
 			
@@ -137,8 +137,8 @@ public class Operation implements Serializable{
 	        } catch (IOException e){
 	        	e.printStackTrace();
 	        }
-	    return operationList;
-	    }	
+	    }
+		 return operationList;
 	}
 	
 }
