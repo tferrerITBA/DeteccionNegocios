@@ -28,39 +28,31 @@ public class Operation implements Serializable{
 	 * Type is set to 1 if this is a buying operation, and set to 2 if this is a selling operation.
 	 */
 	private final int type;
-	private Asset asset;
-	private Date date;
-	private int amount;
+	private final Asset asset;
+	private final Date date;
+	private final int purchaseAmount;
+	private final double purchaseValue;
 	
-	public Operation(int type, Asset asset, Date date, int amount){
-		setType(type);
-		setAsset(asset);
-		setDate(date);
-		setAmount(amount);
-	}
-
-	public void setType(int type) {
+	public Operation(int type, Asset asset, Date date, int purchaseAmount, double purchaseValue){
+		
 		this.type = type;
-	}
-	
-	public void setAsset(Asset asset) {
-		this.asset = asset;
-	}
-	
-	public void setDate(Date date) {
+		this.purchaseValue = purchaseValue;
+		this.purchaseAmount = purchaseAmount;
 		this.date = date;
+		this.asset = asset;
+		
 	}
 	
-	public void setAmount(int amount) {
-		this.amount = amount;
+	public double getPurchaseValue() {
+		return purchaseValue;
 	}
 	
 	public int getType() {
 		return type;
 	}
 	
-	public int getAmount() {
-		return amount;
+	public int getPurchaseAmount() {
+		return purchaseAmount;
 	}
 	
 	public Asset getAsset() {
@@ -79,7 +71,7 @@ public class Operation implements Serializable{
 		
 	}
 	
-	void WriteOperationInHistoryFile(Operation operation){	//o es un método static, o es de instancia y no recibe parametros
+	void WriteOperationInHistoryFile(Operation operation){	//o es un mï¿½todo static, o es de instancia y no recibe parametros
 		
 		String fileName = "operationHistory.ser";
 		
@@ -110,7 +102,7 @@ public class Operation implements Serializable{
 	*/
 	public Collection<Operation> readFromFile() {  
 		List<Operation> operationList = new ArrayList<Operation>();
-		String fileName = "operationHistory.bin";
+		String fileName = "operationHistory.ser";
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		

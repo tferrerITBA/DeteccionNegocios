@@ -1,9 +1,10 @@
 package com.carteradeinversion.sys;
 
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 /**
  * Class that handles those assets acquired by the user. Calculates the user's net worth, and overall
@@ -14,23 +15,23 @@ import java.util.Set;
  */
 public class Portfolio {
 	
-	private Set<Asset> holdings;
+	private Map<Asset, PurchaseInfo> holdings;
 	private List<Operation> history;
 	private double netWorth;
 	private double overallGains;
 	private double overallReturns;
 	
 	public Portfolio() {
-		holdings = new HashSet<>();
+		holdings = new HashMap<>();
 		history = new LinkedList<>();
 		netWorth = overallGains = overallReturns = 0;
 	}
 
-	public Set<Asset> getHoldings() {
-		return Collections.unmodifiableSet(holdings);
+	public Map<Asset, PurchaseInfo> getHoldings() {
+		return Collections.unmodifiableMap(holdings);
 	}
 
-	public List<Operation> getHistory() {
+	public List<Operation> getHistory() { 
 		return Collections.unmodifiableList(history);
 	}
 
@@ -50,11 +51,11 @@ public class Portfolio {
 	}
 	
 	private void calcGains() {
-		overallGains = getAllCurrentValues() - getAllOriginalValues();
+		overallGains = getAllCurrentValues() - getAllAcquiredValues();
 	}
 	
 	private void calcReturns() {
-		overallReturns = getAllCurrentValues() / getAllOriginalValues();
+		overallReturns = getAllCurrentValues() / getAllAcquiredValues();
 	}
 	
 	private void calcNetWorth() {
@@ -63,16 +64,18 @@ public class Portfolio {
 	
 	private double getAllCurrentValues() {
 		double sum = 0; 
-		for(Asset asset : getHoldings()) {
-			sum += asset.getVal();
+		
+		for(Asset asset : getHoldings().keySet()) {
+			sum += asset.getVal() * getHoldings().get(asset).getAssetAmount();
+			
 		}
 		return sum;
 	}
 	
-	private double getAllOriginalValues() {
+	private double getAllAcquiredValues() {
 		double sum = 0;
-		for(Operation operation : getHistory()) {
-			sum += operation.asset.getVal();
+		for(Asset asset : getHoldings().keySet()) {
+			sum += getHoldings().get(asset).getMoneyInvested();
 		}
 		return sum;
 	}
