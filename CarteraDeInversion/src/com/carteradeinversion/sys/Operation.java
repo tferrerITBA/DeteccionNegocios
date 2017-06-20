@@ -18,7 +18,7 @@ import java.util.List;
  * Class for managing Operation objects. Includes functionality to export these to a
  * file (named operationHistory.ser). 
  * 
- * @author Felipe Gorostiaga
+ * @author Felipe Gorostiaga & Tomas Ferrer
  * 
  */
 public class Operation implements Serializable{

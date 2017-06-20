@@ -1,5 +1,9 @@
 package com.carteradeinversion.sys;
-
+/**
+ * 
+ * @author Alejandro Santoflaminio & Agustin Bossi
+ *
+ */
 public class Asset {
 	
 	private double val; 
@@ -9,8 +13,8 @@ public class Asset {
 	private double close;
 	private double variation; 
 	private int amount; 
-	private String name;
-	private String ticker;
+	private final String name;
+	private final String ticker;
 	
 	
 	public Asset(double val, double min, double max, double open, double close, int amount, String name,

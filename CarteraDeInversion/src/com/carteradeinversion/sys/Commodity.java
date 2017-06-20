@@ -1,5 +1,9 @@
 package com.carteradeinversion.sys;
-
+/**
+ * 
+ * @author Alejandro Santoflaminio & Agustin Bossi
+ *
+ */
 public class Commodity extends Asset{
 
 	public Commodity(double val, double min, double max, double open, double close, int amount, String name,

@@ -5,12 +5,11 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 /**
  * Class that handles those assets acquired by the user. Calculates the user's net worth, and overall
  * gains (in $) and returns (in %).
  * 
- * @author Tomas Ferrer
+ * @author Tomas Ferrer & Felipe Gorostiaga
  *
  */
 public class Portfolio {
@@ -34,6 +33,14 @@ public class Portfolio {
 
 	public List<Operation> getHistory() { 
 		return Collections.unmodifiableList(history);
+	}
+	
+	public double getCash() {
+		return cash;
+	}
+
+	public void setCash(double cash) {
+		this.cash = cash;
 	}
 
 	public double getNetWorth() {
@@ -84,13 +91,15 @@ public class Portfolio {
 	private void operate(Asset asset, int amount, double price) {
 		
 		PurchaseInfo info = holdings.get(asset);
-		
-		info.setMoneyInvested(info.getMoneyInvested() + (amount * price));
-		info.setAssetAmount(info.getAssetAmount() + amount);
-		
+		if(info.getAssetAmount() + amount == 0)
+			holdings.remove(asset);
+		else {
+			info.setMoneyInvested(info.getMoneyInvested() + (amount * price));
+			info.setAssetAmount(info.getAssetAmount() + amount);
+		}
 	}
 	/**
-	 * Adds an operation to the current portfolio. If the user already had acquired a certain amount of
+	 * Adds an operation to the current Portfolio. If the user already had acquired a certain amount of
 	 * a specific asset and wishes to buy more, these should be merged.
 	 * 
 	 * @param operation Operation to be added.
@@ -124,11 +133,4 @@ public class Portfolio {
 		 */
 	}
 
-	public double getCash() {
-		return cash;
-	}
-
-	public void setCash(double cash) {
-		this.cash = cash;
-	}
 }

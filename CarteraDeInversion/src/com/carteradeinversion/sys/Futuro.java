@@ -1,7 +1,11 @@
 package com.carteradeinversion.sys;
 
 import java.util.Date;
-
+/**
+ * 
+ * @author Alejandro Santoflaminio & Agustin Bossi
+ *
+ */
 public class Futuro extends Derivado{
 
 	public Futuro(double val, double min, double max, double open, double close, int amount, String name, String ticker,

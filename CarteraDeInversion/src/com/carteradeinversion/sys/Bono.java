@@ -1,7 +1,11 @@
 package com.carteradeinversion.sys;
 
 import java.util.Date;
-
+/**
+ * 
+ * @author Alejandro Santoflaminio & Agustin Bossi
+ *
+ */
 public class Bono extends Derivado{
 	private double tir;
 	private double parity;

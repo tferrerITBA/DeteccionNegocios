@@ -1,7 +1,11 @@
 package com.carteradeinversion.sys;
 
 import java.util.Date;
-
+/**
+ * 
+ * @author Alejandro Santoflaminio & Agustin Bossi
+ *
+ */
 abstract class Derivado extends Asset{
 	private Date expiration;
 	

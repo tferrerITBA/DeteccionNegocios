@@ -1,5 +1,9 @@
 package com.carteradeinversion.sys;
-
+/**
+ * 
+ * @author Felipe Gorostiaga & Tomas Ferrer
+ *
+ */
 public class PurchaseInfo {
 
 	private double moneyInvested;
